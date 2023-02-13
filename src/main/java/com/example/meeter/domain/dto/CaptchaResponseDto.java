@@ -1,4 +1,4 @@
-package com.example.sweater.domain.dto;
+package com.example.meeter.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

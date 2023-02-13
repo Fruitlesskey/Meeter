@@ -1,9 +1,9 @@
-package com.example.sweater.controller;
+package com.example.meeter.controller;
 
 
-import com.example.sweater.domain.Role;
-import com.example.sweater.domain.User;
-import com.example.sweater.service.UserService;
+import com.example.meeter.domain.Role;
+import com.example.meeter.domain.User;
+import com.example.meeter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

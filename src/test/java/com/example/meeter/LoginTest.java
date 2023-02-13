@@ -1,13 +1,15 @@
-package com.example.sweater;
+package com.example.meeter;
 
-import com.example.sweater.controller.MainController;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.example.meeter.controller.MessageController;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
@@ -18,14 +20,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestPropertySource("/application-test.properties")
+
 public class LoginTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
-    private MainController controller;
+    private MessageController controller;
 
     @Test
     public void contextLoad() throws Exception {
@@ -47,11 +51,13 @@ public class LoginTest {
     }
 
     @Test
+    @Sql(value = {"/create-user-before.sql","/messages-list-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD )
+    @Sql(value = {"/messages-list-after.sql","/create-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD )
     public void correctLoginTest() throws Exception {
-        this.mockMvc.perform(SecurityMockMvcRequestBuilders.formLogin().user("2").password("2"))
+        this.mockMvc.perform(SecurityMockMvcRequestBuilders.formLogin().user("admin").password("1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/main"));
+                .andExpect(redirectedUrl("/login?error"));
 
     }
     @Test

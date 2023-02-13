@@ -1,8 +1,8 @@
-package com.example.sweater.controller;
+package com.example.meeter.controller;
 
-import com.example.sweater.domain.User;
-import com.example.sweater.domain.dto.CaptchaResponseDto;
-import com.example.sweater.service.UserService;
+import com.example.meeter.domain.User;
+import com.example.meeter.domain.dto.CaptchaResponseDto;
+import com.example.meeter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

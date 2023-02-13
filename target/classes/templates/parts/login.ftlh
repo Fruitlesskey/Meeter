@@ -1,3 +1,4 @@
+<#include "security.ftlh">
 <#macro login path isRegisterForm>
     <form action="${path}" method="post">
         <div class="mb-3">
@@ -5,7 +6,7 @@
             <input type="text" name="username" value="<#if user??>${user.username}</#if>"
                    class="form-control ${(usernameError??)?string('is-invalid', '')}"
                    id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="User name">
+                   placeholder="User name"/>
             <#if usernameError??>
                 <div class="invalid-feedback">
                     ${usernameError}
@@ -18,7 +19,7 @@
             <input type="password" name="password"
                    class="form-control ${(passwordError??)?string('is-invalid', '')}"
                    id="exampleInputPassword1"
-                   placeholder="Password">
+                   placeholder="Password"/>
             <#if passwordError??>
                 <div class="invalid-feedback">
                     ${passwordError}
@@ -31,7 +32,7 @@
                 <input type="password" name="password2"
                        class="form-control ${(password2Error??)?string('is-invalid', '')}"
                        id="exampleInputPassword1"
-                       placeholder="Retype password">
+                       placeholder="Retype password"/>
                 <#if password2Error??>
                     <div class="invalid-feedback">
                         ${password2Error}
@@ -43,7 +44,7 @@
                 <input type="email" name="email" value="<#if user??>${user.email}</#if>"
                        class="form-control ${(emailError??)?string('is-invalid', '')}"
                        id="exampleInputEmail1"
-                       placeholder="some@some.com">
+                       placeholder="some@some.com"/>
                 <#if emailError??>
                     <div class="invalid-feedback">
                         ${emailError}
@@ -68,6 +69,6 @@
 <#macro logout>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="_csrf.token" />
-        <button class="btn btn-primary" type="submit">Sign Out</button>
+        <button class="btn btn-primary" type="submit"><#if user??>Sign Out<#else>Log in</#if></button>
     </form>
 </#macro>

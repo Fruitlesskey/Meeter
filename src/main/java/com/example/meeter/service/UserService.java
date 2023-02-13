@@ -1,8 +1,8 @@
-package com.example.sweater.service;
+package com.example.meeter.service;
 
-import com.example.sweater.domain.Role;
-import com.example.sweater.domain.User;
-import com.example.sweater.repos.UserRepo;
+import com.example.meeter.domain.Role;
+import com.example.meeter.domain.User;
+import com.example.meeter.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -64,7 +64,7 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {//ObjectUtils
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://localhost:8090/activate/%s",
+                            "Welcome to Meeter. Please, visit next link: http://localhost:8090/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()
             );
